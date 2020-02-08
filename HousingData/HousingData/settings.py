@@ -66,7 +66,8 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'HousingData.pipelines.HousingdataPipeline': 300,
+   'HousingData.pipelines.LvyouPipeline': 200,
+   # 'HousingData.pipelines.HousingdataPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -92,3 +93,10 @@ ITEM_PIPELINES = {
 
 # 设置日志输出等级 https://www.aimks.com/clear-print-information-for-scrapy-crawler-full-screen.html
 LOG_LEVEL= 'WARNING'
+
+
+# https://blog.csdn.net/hoddy355/article/details/81047280   参考博文
+MYSQL_HOST = "localhost"
+MYSQL_DBNAME = "sh_life"
+MYSQL_USER = "root"
+MYSQL_PASSWORD = "123wangchao"
