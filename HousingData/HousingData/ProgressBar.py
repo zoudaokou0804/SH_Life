@@ -65,6 +65,14 @@ for i in bar(range(10)):
     time.sleep(0.1)
 """
 
+
+
+"""
+# 花里胡哨请看这里
+from alive_progress import showtime
+showtime()
+"""
+
 # alive-progress库
 def alive_progress_bar(num):
     from alive_progress import alive_bar
