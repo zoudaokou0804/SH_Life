@@ -65,7 +65,7 @@ class LianjiaSpider(scrapy.Spider):
                                 pg = 'pg' + str(page + 1) + '/?'
                                 page_url = pg.join(tw_url.split('?'))
 
-                                page_url = 'https://sh.lianjia.com/xiaoqu/beicai/pg10/?from=rec'# 错误测试页，待注释
+                                # page_url = 'https://sh.lianjia.com/xiaoqu/beicai/pg10/?from=rec'# 错误测试页，待注释
                                 
                                 hhtt=parse_html(page_url)
                                 house_list=hhtt.xpath('//li[@class="clear xiaoquListItem"]')
