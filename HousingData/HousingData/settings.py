@@ -66,6 +66,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
+   # 'HousingData.pipelines.LvyouPipeline': 200, # 异步存储设置
    'HousingData.pipelines.HousingdataPipeline': 300,
 }
 
