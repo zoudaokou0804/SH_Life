@@ -46,7 +46,7 @@ class LianjiaSpider(scrapy.Spider):
         header_url = 'https://sh.lianjia.com'
         Districts_url = [header_url + i for i in Districts_url][:-1] # 删除上海周边的小区数据连接
         # alive_progress_bar(len(Districts_url)) # 进度条1
-        with alive_bar(len(Districts_url)) as bar1:   # declare your expected total
+        with alive_bar(len(Districts_url),title='行政区：') as bar1:   # declare your expected total
             for dis_url in Districts_url:
                 # bf=parse_html(dis_url)
                 ht = parse_html(dis_url)
@@ -54,13 +54,13 @@ class LianjiaSpider(scrapy.Spider):
                     '//div[@data-role="ershoufang"]//div[2]//a/@href')
                 towns_url = [header_url + i for i in towns_url]
                 # alive_progress_bar(len(towns_url)) # 进度条2
-                with alive_bar(len(towns_url)) as bar2:   # declare your expected total
+                with alive_bar(len(towns_url),title='乡镇：') as bar2:   # declare your expected total
                     for tw_url in towns_url:
                         htt = parse_html(tw_url)
                         # json.load解析json数据为字典
                         Pages =json.loads(htt.xpath('//div[@class="page-box house-lst-page-box"]/@page-data')[0])['totalPage']
                         # alive_progress_bar(Pages) # 进度条3
-                        with alive_bar(int(Pages)) as bar3:   # declare your expected total
+                        with alive_bar(int(Pages),title='总页面：') as bar3:   # declare your expected total
                             for page in range(int(Pages)):
                                 pg = 'pg' + str(page + 1) + '/?'
                                 page_url = pg.join(tw_url.split('?'))
@@ -70,7 +70,7 @@ class LianjiaSpider(scrapy.Spider):
                                 hhtt=parse_html(page_url)
                                 house_list=hhtt.xpath('//li[@class="clear xiaoquListItem"]')
                                 # alive_progress_bar(len(house_list)) # 进度条4
-                                with alive_bar(len(house_list)) as bar4:   # declare your expected total
+                                with alive_bar(len(house_list),title='每一页：') as bar4:   # declare your expected total
                                     for house in house_list:
                                         hi=HousingdataItem()
                                         hi['Data_HouseCode']=house.xpath('@data-housecode')[0]
