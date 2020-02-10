@@ -8,10 +8,7 @@
 import scrapy
 
 
-class LifeserviceItem(scrapy.Item):
+class TttItem(scrapy.Item):
     # define the fields for your item here like:
-    IndexID = scrapy.Field()
-    ItemName = scrapy.Field()
-    Classify_First_Level = scrapy.Field()
-    Classify_Second_Level = scrapy.Field()
-    Item_Link = scrapy.Field()
+    # name = scrapy.Field()
+    pass

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for LifeService project
+# Scrapy settings for ttt project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'LifeService'
+BOT_NAME = 'ttt'
 
-SPIDER_MODULES = ['LifeService.spiders']
-NEWSPIDER_MODULE = 'LifeService.spiders'
+SPIDER_MODULES = ['ttt.spiders']
+NEWSPIDER_MODULE = 'ttt.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'LifeService (+http://www.yourdomain.com)'
+#USER_AGENT = 'ttt (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -48,13 +48,13 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'LifeService.middlewares.LifeserviceSpiderMiddleware': 543,
+#    'ttt.middlewares.TttSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'LifeService.middlewares.LifeserviceDownloaderMiddleware': 543,
+#    'ttt.middlewares.TttDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -66,8 +66,8 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-  #  'LifeService.pipelines.LifeservicePipeline': 300,
-   'LifeService.pipelines.LvyouPipeline': 200,
+	'ttt.pipelines.LvyouPipeline': 200, #异步存储
+    'ttt.pipelines.TttPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -92,11 +92,12 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 # 设置日志输出等级 https://www.aimks.com/clear-print-information-for-scrapy-crawler-full-screen.html
-LOG_LEVEL= 'WARNING'
+# LOG_LEVEL= 'WARNING'
+
 
 
 #异步存储设置参数
-MYSQL_HOST = "localhost"
-MYSQL_DBNAME = "sh_life"
-MYSQL_USER = "root"
-MYSQL_PASSWORD = "123wangchao"
+# MYSQL_HOST = "localhost"
+# MYSQL_DBNAME = "sh_life"
+# MYSQL_USER = "root"
+# MYSQL_PASSWORD = "123wangchao"
