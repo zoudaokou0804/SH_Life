@@ -7,7 +7,7 @@ def handle_data():
     cur = conn.cursor()
     # 定义要执行的SQL语句
     # sql1 删除重复数据
-    sql1 = '''DELETE t1 FROM catalog_index t1, catalog_index t2 WHERE t1.ItemName = t2.ItemName AND t1.IndexId > t2.IndexId'''
+    sql1 = '''DELETE t1 FROM catalog_index t1, catalog_index t2 WHERE t1.ItemName = t2.ItemName AND t1.Classify_First_Level = t2.Classify_First_Level AND t1.IndexId > t2.IndexId'''
     # sql2，sql3充值index
     sql2 = '''SET @i=0;'''
     sql3 = '''UPDATE catalog_index SET IndexId=(@i:=@i+1);'''
