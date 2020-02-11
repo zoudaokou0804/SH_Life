@@ -49,41 +49,43 @@ class LianjiaSpider(scrapy.Spider):
         header_url = 'https://sh.lianjia.com'
         Districts_url = [header_url + i for i in Districts_url][:-1] # 删除上海周边的小区数据连接
         
-        par1=tqdm(Districts_url,ascii=False,desc="1st loop",disable=False,dynamic_ncols=False,position=4)
+        par1=tqdm(Districts_url,ascii=False,desc="全上海",disable=False,dynamic_ncols=False,position=4)
         for p1 in par1:
-            par1.set_description("Processing %s" % p1)
-            dis_url=par1.return_description(p1).split('Processing ')[1].split('c:')[0]+'c' # 注意return_des自定义函数
-            
+            # par1.set_description("Processing %s" % p1)
+            # dis_url=par1.return_description(p1).split('Processing ')[1].split('c:')[0]+'c' # 注意return_des自定义函数
+            dis_url=p1
             ht = parse_html(dis_url)
             towns_url = ht.xpath(
                 '//div[@data-role="ershoufang"]//div[2]//a/@href')
             towns_url = [header_url + i for i in towns_url]
             
-            par2=tqdm(towns_url,ascii=False,desc="2st loop",disable=False,dynamic_ncols=False,position=3,leave=False)
+            par2=tqdm(towns_url,ascii=False,desc="全区",disable=False,dynamic_ncols=False,position=3,leave=False)
             for p2 in par2:
-                par2.set_description("Processing %s" % p2)
-                tw_url=par2.return_description(p2).split('Processing ')[1].split('c:')[0]+'c' # 注意return_des自定义函数
-
+                # par2.set_description("Processing %s" % p2)
+                # tw_url=par2.return_description(p2).split('Processing ')[1].split('c:')[0]+'c' # 注意return_des自定义函数
+                tw_url=p2
                 htt = parse_html(tw_url)
                 # json.load解析json数据为字典
                 Pages =json.loads(htt.xpath('//div[@class="page-box house-lst-page-box"]/@page-data')[0])['totalPage']
                 
-                par3=tqdm(range(1,Pages+1),ascii=False,desc="3st loop",disable=False,dynamic_ncols=False,position=2,leave=False)
+                par3=tqdm(range(1,Pages+1),ascii=False,desc="全镇",disable=False,dynamic_ncols=False,position=2,leave=False)
                 for p3 in par3:
-                    par3.set_description("Processing %s" % p3)
-                    pgn=par3.return_description(p3).split('Processing ')[1].split(':')[0] # 注意return_des自定义函数
-                    pg = 'pg' + pgn + '/?'
+                    # par3.set_description("Processing %s" % p3)
+                    # pgn=par3.return_description(p3).split('Processing ')[1].split(':')[0] # 注意return_des自定义函数
+                    pgn=p3
+                    pg = 'pg' + str(pgn) + '/?'
                     page_url = pg.join(tw_url.split('?'))
                     # page_url = 'https://sh.lianjia.com/xiaoqu/beicai/pg10/?from=rec'# 错误测试页，待注释
                     hhtt=parse_html(page_url)
                     house_list=hhtt.xpath('//li[@class="clear xiaoquListItem"]')
                     # ll=[etree.tostring(house_list[i]) for i in range(len(house_list))]
-                    par4=tqdm(house_list,ascii=False,desc="4st loop",disable=False,dynamic_ncols=False,position=1,leave=False)
-                    initk=0
+                    par4=tqdm(house_list,ascii=False,desc="全页",disable=False,dynamic_ncols=False,position=1,leave=False)
+                    # initk=0
                     for p4 in par4:
-                        par4.set_description("Processing %s" % p4)
-                        # house=par4.return_description(p4).split('Processing ')[1].split(':')[0] # 注意return_des自定义函数
-                        house=house_list[initk]
+                        # par4.set_description("Processing %s" % p4)
+                        # # house=par4.return_description(p4).split('Processing ')[1].split(':')[0] # 注意return_des自定义函数
+                        # house=house_list[initk]
+                        house=p4
                         hi=HousingdataItem()
                         hi['Data_HouseCode']=house.xpath('@data-housecode')[0]
                         hi['Name']=house.xpath('./div[1]/div[1]/a/text()')[0]
@@ -130,4 +132,4 @@ class LianjiaSpider(scrapy.Spider):
                             hi['Address']='暂无信息'
                             hi['FocusNum']='0' 
                         yield  hi    
-                        initk +=1                                                 
+                        # initk +=1                                                 
