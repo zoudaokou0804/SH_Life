@@ -27,6 +27,20 @@ class DzdpDataSpider(scrapy.Spider):
             c1name=c1.xpath('./h2/text()').extract()[0]
             # pbar1.set_description("一级大类 %s" % c1name)
             class2_list=c1.xpath('./dl')
+
+            # d大学及周边数据另外路径
+            university_along_list=c1.xpath('//ul[@class="uniList"]//li//a')
+            pbar0=tqdm(university_along_list,desc='大学周边',leave=False,position=2)
+            for un in pbar0:
+                un_name=un.xpath('./text()').extract()[0]
+                un_url=un.xpath('./@href').extract()[0].split('//')[1]
+                unit=LifeserviceItem()
+                unit['ItemName']=un_name
+                unit['Classify_First_Level']='大学周边'
+                unit['Classify_Second_Level']='----'
+                unit['Item_Link']=un_url
+                yield unit
+
             pbar2=tqdm(class2_list,desc='二级大类',leave=False,position=2)
             for c2 in pbar2:
                 c2name=c2.xpath('./dt//text()').extract()[0]
@@ -46,4 +60,4 @@ class DzdpDataSpider(scrapy.Spider):
                     time.sleep(0.01)
         end_time=time.time()
         print('数据解析完成')
-        print('总耗时 %s '%(end_time-start_time))
+        print('总耗时： %s s' %(end_time-start_time))
