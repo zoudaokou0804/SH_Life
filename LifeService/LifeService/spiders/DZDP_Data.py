@@ -38,7 +38,7 @@ class DzdpDataSpider(scrapy.Spider):
                 unit['ItemName']=un_name
                 unit['Classify_First_Level']='大学周边'
                 unit['Classify_Second_Level']='----'
-                unit['Item_Link']=un_url
+                unit['Item_Link']='http://'+un_url
                 yield unit
 
             pbar2=tqdm(class2_list,desc='二级大类',leave=False,position=2)
@@ -55,7 +55,7 @@ class DzdpDataSpider(scrapy.Spider):
                     it['ItemName']=itemname
                     it['Classify_First_Level']=c1name
                     it['Classify_Second_Level']=c2name
-                    it['Item_Link']=itemurl
+                    it['Item_Link']='http://'+itemurl
                     yield it
                     time.sleep(0.01)
         end_time=time.time()

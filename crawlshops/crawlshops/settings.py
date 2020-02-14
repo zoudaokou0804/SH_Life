@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for ttt project
+# Scrapy settings for crawlshops project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'ttt'
+BOT_NAME = 'crawlshops'
 
-SPIDER_MODULES = ['ttt.spiders']
-NEWSPIDER_MODULE = 'ttt.spiders'
+SPIDER_MODULES = ['crawlshops.spiders']
+NEWSPIDER_MODULE = 'crawlshops.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'ttt (+http://www.yourdomain.com)'
+#USER_AGENT = 'crawlshops (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -48,13 +48,13 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'ttt.middlewares.TttSpiderMiddleware': 543,
+#    'crawlshops.middlewares.CrawlshopsSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'ttt.middlewares.TttDownloaderMiddleware': 543,
+#    'crawlshops.middlewares.CrawlshopsDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,10 +65,11 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-	'ttt.pipelines.LvyouPipeline': 200, #异步存储
-    'ttt.pipelines.TttPipeline': 300,
-}
+
+# ITEM_PIPELINES = {
+# 	'crawlshops.pipelines.LvyouPipeline': 200, #异步存储
+#     'crawlshops.pipelines.CrawlshopsPipeline': 300,
+# }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

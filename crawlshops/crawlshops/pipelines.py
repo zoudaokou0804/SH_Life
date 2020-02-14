@@ -6,7 +6,7 @@
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 import pymysql as pm
 
-class TttPipeline(object):
+class CrawlshopsPipeline(object):
     def __init__(self):
         self.connect = pm.connect(host='localhost',user='root',passwd='123wangchao',db='eastmoney_funddata')
         self.cursor = self.connect.cursor()
