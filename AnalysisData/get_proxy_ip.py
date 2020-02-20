@@ -1,3 +1,15 @@
+#!/user/bin/env python
+# -*- encoding:utf-8 -*_
+'''
+@File:getproxyip.py
+@Time:2020/02/16 00:32:27
+@Author:zoudaokou
+@Version:1.0
+@Contact:wangchao0804@163.com
+@desc:动态获取代理ip功能函数
+'''
+
+
 import requests
 import random
 import json
